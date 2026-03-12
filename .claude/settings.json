@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__zread__get_repo_structure",
+      "Bash(find)",
+      "Bash(pnpm build)",
+      "mcp__zread__search_doc"
+    ],
+    "deny": [],
+    "ask": []
+  },
+  "attribution": {
+    "commit": "🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: GLM-5 <noreply@bigmodel.cn>",
+    "pr": ""
+  }
+}
