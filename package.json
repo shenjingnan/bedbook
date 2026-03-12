@@ -1,0 +1,30 @@
+{
+  "name": "bedbook",
+  "version": "1.0.0",
+  "description": "儿童故事 MCP 服务 - 提供故事列表和搜索功能",
+  "main": "dist/index.js",
+  "bin": {
+    "bedbook": "./dist/index.js"
+  },
+  "scripts": {
+    "dev": "ts-node --transpile-only src/index.ts",
+    "dev:http": "MCP_TRANSPORT=http MCP_PORT=3000 ts-node --transpile-only src/index.ts",
+    "build": "tsup",
+    "start": "node dist/index.js",
+    "start:http": "MCP_TRANSPORT=http MCP_PORT=3000 node dist/index.js"
+  },
+  "keywords": ["mcp", "bedbook", "stories", "children"],
+  "author": "shenjingnan <sjn.code@gmail.com>",
+  "license": "MIT",
+  "packageManager": "pnpm@10.18.2",
+  "dependencies": {
+    "bestmcp": "^0.1.5",
+    "zod": "^4.3.6"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "ts-node": "^10.9.2",
+    "tsup": "^8.0.0",
+    "typescript": "^5.0.0"
+  }
+}
