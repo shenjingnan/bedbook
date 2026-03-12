@@ -4,20 +4,6 @@ import matter from "gray-matter";
 import type { Story, StoryMetadata } from "@/types";
 
 /**
- * 获取 package.json 中的版本号
- */
-export function getPackageVersion(): string {
-  try {
-    const packageJsonPath = join(__dirname, "..", "package.json");
-    const packageJson = JSON.parse(readFileSync(packageJsonPath, "utf-8"));
-    return packageJson.version || "0.0.1";
-  } catch {
-    console.warn("无法读取 package.json 中的版本号，使用默认版本 0.0.1");
-    return "0.0.1";
-  }
-}
-
-/**
  * 获取故事目录路径
  * 支持通过环境变量 BEDBOOK_STORIES_DIR 自定义路径
  */
