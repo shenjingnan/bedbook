@@ -1,0 +1,27 @@
+{
+  "$schema": "https://raw.githubusercontent.com/streetsidesoftware/cspell/main/cspell.schema.json",
+  "version": "0.2",
+  "language": "en,en-US",
+  "words": [
+    "bedbook",
+    "bestmcp",
+    "tsup",
+    "Zod",
+    "Jaccard",
+    "Deepseek"
+  ],
+  "ignorePaths": [
+    "dist/**",
+    "node_modules/**",
+    "*.lock",
+    "pnpm-lock.yaml"
+  ],
+  "patterns": [
+    {
+      "name": "chinese",
+      "pattern": "[\\u4e00-\\u9fff]+"
+    }
+  ],
+  "ignoreRegExpList": ["chinese"],
+  "import": ["@cspell/dict-typescript/cspell-ext.json"]
+}

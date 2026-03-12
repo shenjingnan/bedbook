@@ -11,9 +11,16 @@
     "dev:http": "MCP_TRANSPORT=http MCP_PORT=3000 ts-node --transpile-only src/index.ts",
     "build": "tsup",
     "start": "node dist/index.js",
-    "start:http": "MCP_TRANSPORT=http MCP_PORT=3000 node dist/index.js"
+    "start:http": "MCP_TRANSPORT=http MCP_PORT=3000 node dist/index.js",
+    "spellcheck": "cspell \"src/**/*.ts\" \"stories/**/*.md\" \"*.md\"",
+    "spellcheck:fix": "cspell --fix \"src/**/*.ts\" \"stories/**/*.md\" \"*.md\""
   },
-  "keywords": ["mcp", "bedbook", "stories", "children"],
+  "keywords": [
+    "mcp",
+    "bedbook",
+    "stories",
+    "children"
+  ],
   "author": "shenjingnan <sjn.code@gmail.com>",
   "license": "MIT",
   "packageManager": "pnpm@10.18.2",
@@ -23,6 +30,7 @@
   },
   "devDependencies": {
     "@types/node": "^22.0.0",
+    "cspell": "^9.7.0",
     "ts-node": "^10.9.2",
     "tsup": "^8.0.0",
     "typescript": "^5.0.0"
