@@ -13,7 +13,8 @@
     "start": "node dist/index.js",
     "start:http": "MCP_TRANSPORT=http MCP_PORT=3000 node dist/index.js",
     "spellcheck": "cspell \"src/**/*.ts\" \"stories/**/*.md\" \"*.md\"",
-    "spellcheck:fix": "cspell --fix \"src/**/*.ts\" \"stories/**/*.md\" \"*.md\""
+    "spellcheck:fix": "cspell --fix \"src/**/*.ts\" \"stories/**/*.md\" \"*.md\"",
+    "typecheck": "tsc --noEmit"
   },
   "keywords": [
     "mcp",
