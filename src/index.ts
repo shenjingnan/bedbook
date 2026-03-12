@@ -2,12 +2,11 @@
 
 import { BestMCP } from "bestmcp";
 import { StoryService } from "@/services";
-import { getPackageVersion } from "@/utils";
 
 // 创建 MCP 服务器实例
 const mcp = new BestMCP({
   name: "Bedbook - 儿童故事 MCP 服务",
-  version: getPackageVersion(),
+  version: PACKAGE_VERSION,
 });
 
 // 注册故事服务
