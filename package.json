@@ -14,7 +14,13 @@
     "start:http": "MCP_TRANSPORT=http MCP_PORT=3000 node dist/index.js",
     "spellcheck": "cspell \"src/**/*.ts\" \"stories/**/*.md\" \"*.md\"",
     "spellcheck:fix": "cspell --fix \"src/**/*.ts\" \"stories/**/*.md\" \"*.md\"",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "release": "release-it",
+    "release:beta": "release-it --preRelease=beta --ci",
+    "release:dry": "release-it --dry-run --ci",
+    "release:patch": "release-it patch --ci",
+    "release:minor": "release-it minor --ci",
+    "release:major": "release-it major --ci"
   },
   "keywords": [
     "mcp",
@@ -35,6 +41,8 @@
     "cspell": "^9.7.0",
     "ts-node": "^10.9.2",
     "tsup": "^8.0.0",
-    "typescript": "^5.0.0"
+    "typescript": "^5.0.0",
+    "release-it": "^19.0.0",
+    "@release-it/conventional-changelog": "^10.0.5"
   }
 }
