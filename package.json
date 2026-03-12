@@ -2,6 +2,14 @@
   "name": "bedbook",
   "version": "0.0.1",
   "description": "儿童故事 MCP 服务 - 提供故事列表和搜索功能",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/shenjingnan/bedbook.git"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
+  },
   "main": "dist/index.js",
   "bin": {
     "bedbook": "./dist/index.js"
@@ -21,6 +29,9 @@
     "release:patch": "release-it patch --ci",
     "release:minor": "release-it minor --ci",
     "release:major": "release-it major --ci"
+  },
+  "engines": {
+    "node": ">=20.0.0"
   },
   "keywords": [
     "mcp",
