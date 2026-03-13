@@ -2,6 +2,14 @@
 
 本文档记录项目的所有重要变更。
 
+# [0.2.0](https://github.com/shenjingnan/bedbook/compare/v0.1.1-beta.0...v0.2.0) (2026-03-13)
+
+
+### Features
+
+* 添加插件配置和铁杵磨成针故事 ([#35](https://github.com/shenjingnan/bedbook/issues/35)) ([5001407](https://github.com/shenjingnan/bedbook/commit/5001407622732cff6a597a86fe36183bb2e751a1))
+* 添加故事生成技能和示例故事 ([#32](https://github.com/shenjingnan/bedbook/issues/32)) ([7fefa12](https://github.com/shenjingnan/bedbook/commit/7fefa12e9f3bea3b439165b850fba6530e0b9df6))
+
 ## [0.1.1-beta.0](https://github.com/shenjingnan/bedbook/compare/v0.1.0...v0.1.1-beta.0) (2026-03-13)
 
 # [0.1.0](https://github.com/shenjingnan/bedbook/compare/v0.1.0-beta.1...v0.1.0) (2026-03-13)
