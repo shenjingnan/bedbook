@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import { BestMCP } from 'bestmcp';
-import { StoryService } from '@/services';
+import { StoryService } from '@/story.service';
 
 // 创建 MCP 服务器实例
 const mcp = new BestMCP({
