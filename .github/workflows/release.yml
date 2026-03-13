@@ -130,11 +130,9 @@ jobs:
       - name: 发布到 NPM
         if: steps.version.outputs.changed == 'true' && steps.tag-check.outputs.exists == 'false'
         env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           NPM_TAG: ${{ steps.prerelease.outputs.npm_tag }}
         run: |
-          echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > .npmrc
-          pnpm publish --provenance --tag "${NPM_TAG}" --no-git-checks
+          pnpm publish --provenance --tag "${NPM_TAG}"
           echo "✅ 已发布到 NPM，标签: ${NPM_TAG}"
 
       - name: 创建 GitHub Release
