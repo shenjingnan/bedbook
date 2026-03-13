@@ -1,7 +1,7 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import type { Story } from '@/types';
 import * as utils from '@/utils';
-import { StoryService } from './story.service';
+import { StoryService } from './story';
 
 // Mock utils 模块
 vi.mock('@/utils', () => ({
