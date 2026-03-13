@@ -45,5 +45,5 @@ export interface SearchResult {
   /** 最佳匹配故事（含完整内容） */
   bestMatch: Story | null;
   /** 其他匹配项列表（不含内容） */
-  otherMatches: Array<Omit<Story, "content">>;
+  otherMatches: Array<Omit<Story, 'content'>>;
 }

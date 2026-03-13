@@ -1,7 +1,7 @@
-import { Param, Tool } from "bestmcp";
-import { z } from "zod";
-import type { Story, SearchResult } from "@/types";
-import { calculateSimilarity, getStoriesDir, loadAllStories } from "@/utils";
+import { Param, Tool } from 'bestmcp';
+import { z } from 'zod';
+import type { SearchResult, Story } from '@/types';
+import { calculateSimilarity, getStoriesDir, loadAllStories } from '@/utils';
 
 /**
  * 故事服务类
@@ -25,7 +25,7 @@ export class StoryService {
    * 列出所有故事
    * 返回故事列表（不含完整内容）
    */
-  @Tool("列出 stories 目录中所有故事")
+  @Tool('列出 stories 目录中所有故事')
   public async listStories() {
     const stories = this.getStories();
 
@@ -50,7 +50,7 @@ export class StoryService {
    * 搜索故事
    * 根据年龄段、名称或关键词模糊搜索故事，返回最佳匹配
    */
-  @Tool("根据年龄段、名称或关键词模糊搜索故事，返回最佳匹配")
+  @Tool('根据年龄段、名称或关键词模糊搜索故事，返回最佳匹配')
   public async searchStory(
     @Param(z.string().optional().describe("年龄段筛选，如: 3-7岁"))
     age?: string,
