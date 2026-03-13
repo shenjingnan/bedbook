@@ -52,11 +52,11 @@ export class StoryService {
    */
   @Tool('根据年龄段、名称或关键词模糊搜索故事，返回最佳匹配')
   public async searchStory(
-    @Param(z.string().optional().describe("年龄段筛选，如: 3-7岁"))
+    @Param(z.string().optional().describe('年龄段筛选，如: 3-7岁'))
     age?: string,
-    @Param(z.string().optional().describe("故事名称模糊匹配"))
+    @Param(z.string().optional().describe('故事名称模糊匹配'))
     title?: string,
-    @Param(z.string().optional().describe("关键词搜索"))
+    @Param(z.string().optional().describe('关键词搜索'))
     keyword?: string
   ): Promise<SearchResult> {
     const stories = this.getStories();
@@ -121,7 +121,7 @@ export class StoryService {
     }
 
     // 最佳匹配（含完整内容）
-    const bestMatch = matched[0]!.story;
+    const [{ story: bestMatch }] = matched;
 
     // 其他匹配项（不含内容）
     const otherMatches = matched.slice(1).map((item) => ({

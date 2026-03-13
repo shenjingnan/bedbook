@@ -103,7 +103,7 @@ describe('StoryService', () => {
       const result = await service.searchStory(undefined, '小老虎怕下雨');
 
       expect(result.bestMatch).not.toBeNull();
-      expect(result.bestMatch!.title).toBe('小老虎怕下雨');
+      expect(result.bestMatch?.title).toBe('小老虎怕下雨');
       expect(result.bestMatch).toHaveProperty('content');
     });
 
@@ -119,7 +119,7 @@ describe('StoryService', () => {
       const result = await service.searchStory('3-7岁');
 
       expect(result.bestMatch).not.toBeNull();
-      expect(result.bestMatch!.age).toBe('3-7岁');
+      expect(result.bestMatch?.age).toBe('3-7岁');
     });
 
     it('按关键词搜索', async () => {
@@ -130,7 +130,7 @@ describe('StoryService', () => {
       const result = await service.searchStory(undefined, undefined, '勇敢');
 
       expect(result.bestMatch).not.toBeNull();
-      expect(result.bestMatch!.keywords).toContain('勇敢');
+      expect(result.bestMatch?.keywords).toContain('勇敢');
     });
 
     it('综合搜索返回最佳匹配', async () => {
@@ -145,7 +145,7 @@ describe('StoryService', () => {
       const result = await service.searchStory('3-7岁', '小老虎', '勇敢');
 
       expect(result.bestMatch).not.toBeNull();
-      expect(result.bestMatch!.title).toBe('小老虎怕下雨');
+      expect(result.bestMatch?.title).toBe('小老虎怕下雨');
     });
 
     it('无匹配结果返回 null', async () => {
@@ -204,7 +204,7 @@ describe('StoryService', () => {
       const result = await service.searchStory(undefined, '小老虎');
 
       // 最佳匹配应该是第一个故事（分数更高）
-      expect(result.bestMatch!.title).toBe('小老虎怕下雨');
+      expect(result.bestMatch?.title).toBe('小老虎怕下雨');
     });
   });
 });
