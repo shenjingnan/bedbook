@@ -1,0 +1,9 @@
+{
+  "name": "bedbook",
+  "description": "添加一个 /add-story 技能，用于快速生成儿童故事",
+  "version": "0.1.1",
+  "author": {
+    "name": "shenjingnan",
+    "email": "sjn.code@gmail.com"
+  }
+}
