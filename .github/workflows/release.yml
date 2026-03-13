@@ -94,7 +94,7 @@ jobs:
 
       - name: 测试
         if: steps.version.outputs.changed == 'true' && steps.tag-check.outputs.exists == 'false'
-        run: pnpm test:run
+        run: pnpm test
 
       - name: 检查是否为预发布版本
         if: steps.version.outputs.changed == 'true' && steps.tag-check.outputs.exists == 'false'
