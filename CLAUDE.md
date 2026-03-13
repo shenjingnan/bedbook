@@ -52,9 +52,7 @@ bedbook/
 │   ├── index.ts          # 入口文件，MCP 服务器配置
 │   ├── types.ts          # TypeScript 类型定义
 │   ├── utils.ts          # 工具函数（文件解析、相似度计算）
-│   └── services/
-│       ├── index.ts      # 服务导出
-│       └── story.service.ts  # 故事服务（MCP 工具）
+│   └── story.ts          # 故事服务（MCP 工具）
 ├── stories/              # 故事文件目录
 │   └── *.md              # Markdown 格式的故事文件
 ├── dist/                 # 编译输出目录
@@ -81,7 +79,7 @@ bedbook/
 
 ### 命名规范
 
-- **文件名**: kebab-case (如 `story.service.ts`)
+- **文件名**: kebab-case (如 `story.ts`)
 - **类名**: PascalCase (如 `StoryService`)
 - **函数/变量**: camelCase (如 `getStories`)
 - **接口**: PascalCase，不加 `I` 前缀 (如 `Story`)
