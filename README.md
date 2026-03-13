@@ -20,6 +20,70 @@ Bedbook 是一个基于 [MCP (Model Context Protocol)](https://modelcontextproto
 - **包管理器**: pnpm
 - **构建工具**: tsup
 
+## 快速开始
+
+Bedbook 是一个 MCP 服务，你可以通过支持 MCP 的 AI 应用来使用它。以下是常见的配置方式：
+
+### 在 Claude Desktop 中配置
+
+编辑配置文件：
+- **macOS**: `~/Library/Application Support/Claude/claude_desktop_config.json`
+- **Windows**: `%APPDATA%\Claude\claude_desktop_config.json`
+
+添加以下配置：
+
+```json
+{
+  "mcpServers": {
+    "bedbook": {
+      "command": "npx",
+      "args": ["-y", "bedbook"]
+    }
+  }
+}
+```
+
+### 在 Cursor 中配置
+
+在项目根目录创建或编辑 `.cursor/mcp.json` 文件：
+
+```json
+{
+  "mcpServers": {
+    "bedbook": {
+      "command": "npx",
+      "args": ["-y", "bedbook"]
+    }
+  }
+}
+```
+
+### 使用示例
+
+配置完成后，你可以直接与 AI 对话来使用 Bedbook：
+
+- "给我找一个适合 5 岁孩子的关于勇敢的故事"
+- "有哪些故事可以讲给孩子听？"
+- "帮我找一个叫'小老虎'的故事"
+
+### 自定义故事目录（可选）
+
+如果你想使用自己的故事文件，可以通过环境变量指定故事目录：
+
+```json
+{
+  "mcpServers": {
+    "bedbook": {
+      "command": "npx",
+      "args": ["-y", "bedbook"],
+      "env": {
+        "BEDBOOK_STORIES_DIR": "/path/to/your/stories"
+      }
+    }
+  }
+}
+```
+
 ## 安装
 
 ### 环境要求
