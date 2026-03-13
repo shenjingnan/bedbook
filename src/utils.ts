@@ -1,5 +1,5 @@
 import { existsSync, readdirSync, readFileSync } from 'node:fs';
-import { join } from 'node:path';
+import { basename, join } from 'node:path';
 import matter from 'gray-matter';
 import type { Story, StoryMetadata } from '@/types';
 
@@ -53,7 +53,7 @@ export function parseYamlFrontMatter(fileContent: string): {
  */
 export function parseStoryFile(filePath: string): Story {
   const fileContent = readFileSync(filePath, 'utf-8');
-  const filename = filePath.split('/').pop() || '';
+  const filename = basename(filePath);
   const { metadata, content } = parseYamlFrontMatter(fileContent);
 
   return {
