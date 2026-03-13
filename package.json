@@ -1,6 +1,6 @@
 {
   "name": "bedbook",
-  "version": "0.1.0",
+  "version": "0.1.1-beta.0",
   "description": "儿童故事 MCP 服务 - 提供故事列表和搜索功能",
   "repository": {
     "type": "git",
