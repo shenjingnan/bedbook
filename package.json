@@ -47,6 +47,13 @@
   ],
   "author": "shenjingnan <sjn.code@gmail.com>",
   "license": "MIT",
+  "files": [
+    "dist",
+    "stories",
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md"
+  ],
   "packageManager": "pnpm@10.30.3",
   "dependencies": {
     "@biomejs/biome": "^2.4.6",
