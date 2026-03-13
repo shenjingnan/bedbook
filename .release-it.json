@@ -32,7 +32,7 @@
     }
   },
   "hooks": {
-    "before:init": ["pnpm lint", "pnpm test:run", "pnpm build"],
+    "before:init": ["pnpm lint", "pnpm test", "pnpm build"],
     "after:bump": ["echo '\n✓ 版本已更新至 ${version}'"],
     "before:git:release": [
       "pnpm lint:fix",
