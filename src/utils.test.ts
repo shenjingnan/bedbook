@@ -193,7 +193,7 @@ category: 分类
     const stories = loadAllStories(testDir);
 
     expect(stories).toHaveLength(1);
-    expect(stories[0]!.title).toBe('故事');
+    expect(stories[0]?.title).toBe('故事');
   });
 
   it('解析失败的文件被跳过', () => {
@@ -222,7 +222,7 @@ title: 无效故事
     const stories = loadAllStories(testDir);
 
     expect(stories).toHaveLength(1);
-    expect(stories[0]!.title).toBe('有效故事');
+    expect(stories[0]?.title).toBe('有效故事');
     expect(consoleSpy).toHaveBeenCalledWith(
       expect.stringContaining('解析故事文件失败'),
       expect.anything()
