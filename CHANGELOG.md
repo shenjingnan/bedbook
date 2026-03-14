@@ -2,6 +2,17 @@
 
 本文档记录项目的所有重要变更。
 
+# [0.3.0](https://github.com/shenjingnan/bedbook/compare/v0.2.1...v0.3.0) (2026-03-14)
+
+
+### Features
+
+* **story:** 为故事元数据添加 language 字段 ([#45](https://github.com/shenjingnan/bedbook/issues/45)) ([cdc6001](https://github.com/shenjingnan/bedbook/commit/cdc6001b553992ffe86d03b291261885d9b8547b))
+* **story:** 增强搜索匹配算法，支持分类和内容匹配 ([#48](https://github.com/shenjingnan/bedbook/issues/48)) ([be37016](https://github.com/shenjingnan/bedbook/commit/be37016210584442d324696aed24178a7cdb5dfb))
+* **story:** 添加15个成语故事 ([#46](https://github.com/shenjingnan/bedbook/issues/46)) ([14edf88](https://github.com/shenjingnan/bedbook/commit/14edf880025924bb83d67c58c1eb2886bf1aa29c))
+* **story:** 添加成语故事《闻鸡起舞》 ([#43](https://github.com/shenjingnan/bedbook/issues/43)) ([147707e](https://github.com/shenjingnan/bedbook/commit/147707e585a7348abd9152f66cf729aafd55af02))
+* **story:** 添加故事阅读次数统计功能 ([#49](https://github.com/shenjingnan/bedbook/issues/49)) ([dd66434](https://github.com/shenjingnan/bedbook/commit/dd66434316a706030572c9c82682e6b85d5538ed))
+
 ## [0.2.1](https://github.com/shenjingnan/bedbook/compare/v0.2.0...v0.2.1) (2026-03-14)
 
 # [0.2.0](https://github.com/shenjingnan/bedbook/compare/v0.1.1-beta.0...v0.2.0) (2026-03-13)
