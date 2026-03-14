@@ -102,6 +102,12 @@ Bedbook 提供了一个 Claude Plugin，让你可以直接在 Claude Code 中使
 /plugin marketplace add shenjingnan/bedbook
 ```
 
+如果你无法访问 github 可以尝试使用 gitee
+
+```bash
+/plugin marketplace add https://gitee.com/shenjingnan/bedbook.git
+```
+
 #### 安装 Plugin
 
 然后安装 bedbook plugin：
@@ -112,9 +118,10 @@ Bedbook 提供了一个 Claude Plugin，让你可以直接在 Claude Code 中使
 
 ### 使用 Plugin
 
-安装完成后，你可以使用 `/add-story` 技能生成故事：
+安装完成后，你可以使用 `/bedbook:add-story` 技能生成故事：
+> 如果安装成功，但是没有发现 `/bedbook:add-story` 技能，可以尝试重启 Claude Code
 
-```
+```bash
 /bedbook:add-story 小兔子找太阳
 /bedbook:add-story 守株待兔 --age 5-7岁
 /bedbook:add-story 一只勇敢的小猫去森林冒险 --keywords 勇敢,冒险,成长
