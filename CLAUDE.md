@@ -98,6 +98,7 @@ keywords:
   - 关键词2
 author: 作者名
 category: 分类
+language: zh
 ---
 
 故事正文内容...
@@ -112,6 +113,7 @@ category: 分类
 | `keywords` | string[] | 是 | 关键词标签列表 |
 | `author` | string | 是 | 作者名（可为"未知"） |
 | `category` | string | 是 | 故事分类 |
+| `language` | string | 是 | 故事语言，ISO 639-1 代码，如 `zh`、`en` |
 
 ## MCP 工具说明
 
@@ -131,7 +133,8 @@ category: 分类
       "age": "3-7岁",
       "keywords": ["勇敢", "友谊"],
       "author": "未知",
-      "category": "儿童故事"
+      "category": "儿童故事",
+      "language": "zh"
     }
   ]
 }
@@ -156,6 +159,7 @@ category: 分类
     "keywords": ["勇敢", "友谊"],
     "author": "未知",
     "category": "儿童故事",
+    "language": "zh",
     "content": "森林里住着一只小老虎..."
   },
   "otherMatches": []

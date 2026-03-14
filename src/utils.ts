@@ -33,6 +33,7 @@ export function parseYamlFrontMatter(fileContent: string): {
     'keywords',
     'author',
     'category',
+    'language',
   ];
   for (const field of requiredFields) {
     if (!data[field]) {

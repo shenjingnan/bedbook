@@ -37,6 +37,7 @@ export class StoryService {
       keywords: story.keywords,
       author: story.author,
       category: story.category,
+      language: story.language,
     }));
 
     return {
@@ -131,6 +132,7 @@ export class StoryService {
       keywords: item.story.keywords,
       author: item.story.author,
       category: item.story.category,
+      language: item.story.language,
     }));
 
     return {

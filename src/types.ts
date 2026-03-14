@@ -13,6 +13,8 @@ export interface StoryMetadata {
   author: string;
   /** 分类 */
   category: string;
+  /** 故事语言，如 'zh', 'en' */
+  language: string;
 }
 
 /**

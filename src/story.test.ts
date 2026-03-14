@@ -20,6 +20,7 @@ describe('StoryService', () => {
       keywords: ['勇敢', '友谊'],
       author: 'Deepseek',
       category: '儿童故事',
+      language: 'zh',
       content: '森林里住着一只小老虎...',
     },
     {
@@ -29,6 +30,7 @@ describe('StoryService', () => {
       keywords: ['温柔', '善良'],
       author: 'Deepseek',
       category: '儿童故事',
+      language: 'zh',
       content: '森林深处住着一只小鹿...',
     },
   ];

@@ -43,6 +43,7 @@ keywords:
   - 关键词2
 author: 测试作者
 category: 测试分类
+language: zh
 ---
 
 这是故事正文内容。`;
@@ -54,6 +55,7 @@ category: 测试分类
     expect(result.metadata.keywords).toEqual(['关键词1', '关键词2']);
     expect(result.metadata.author).toBe('测试作者');
     expect(result.metadata.category).toBe('测试分类');
+    expect(result.metadata.language).toBe('zh');
     expect(result.content).toBe('这是故事正文内容。');
   });
 
@@ -92,6 +94,7 @@ keywords:
   - 关键词1
 author: 测试作者
 category: 测试分类
+language: zh
 ---
 
 故事内容`;
@@ -106,6 +109,7 @@ category: 测试分类
     expect(result.keywords).toEqual(['关键词1']);
     expect(result.author).toBe('测试作者');
     expect(result.category).toBe('测试分类');
+    expect(result.language).toBe('zh');
     expect(result.content).toBe('故事内容');
   });
 
@@ -138,6 +142,7 @@ keywords:
   - 关键词1
 author: 作者1
 category: 分类1
+language: zh
 ---
 
 内容1`;
@@ -149,6 +154,7 @@ keywords:
   - 关键词2
 author: 作者2
 category: 分类2
+language: zh
 ---
 
 内容2`;
@@ -183,6 +189,7 @@ keywords:
   - 关键词
 author: 作者
 category: 分类
+language: zh
 ---
 
 内容`;
@@ -204,6 +211,7 @@ keywords:
   - 关键词
 author: 作者
 category: 分类
+language: zh
 ---
 
 内容`;
