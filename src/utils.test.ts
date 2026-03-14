@@ -101,7 +101,7 @@ language: zh
 
     writeFileSync(testFile, content, 'utf-8');
 
-    const result = parseStoryFile(testFile);
+    const result = parseStoryFile(testFile, testDir);
 
     expect(result.filename).toBe('test-story.md');
     expect(result.title).toBe('测试故事');
@@ -115,7 +115,7 @@ language: zh
 
   it('文件不存在时抛出错误', () => {
     const nonExistentFile = join(testDir, 'non-existent.md');
-    expect(() => parseStoryFile(nonExistentFile)).toThrow();
+    expect(() => parseStoryFile(nonExistentFile, testDir)).toThrow();
   });
 });
 
