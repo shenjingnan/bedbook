@@ -34,7 +34,8 @@
     "release:dry": "release-it --dry-run --ci",
     "release:patch": "release-it patch --ci",
     "release:minor": "release-it minor --ci",
-    "release:major": "release-it major --ci"
+    "release:major": "release-it major --ci",
+    "prepare": "husky"
   },
   "engines": {
     "node": ">=20.0.0"
@@ -66,6 +67,8 @@
     "@types/node": "^22.0.0",
     "@vitest/coverage-v8": "^4.0.18",
     "cspell": "^9.7.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.4.0",
     "release-it": "^19.0.0",
     "tsup": "^8.0.0",
     "typescript": "^5.0.0",
