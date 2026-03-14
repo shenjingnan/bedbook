@@ -1,5 +1,5 @@
-import { existsSync, readdirSync, readFileSync } from 'node:fs';
-import { basename, join } from 'node:path';
+import { existsSync, readdirSync, readFileSync, statSync } from 'node:fs';
+import { join, relative } from 'node:path';
 import matter from 'gray-matter';
 import type { Story, StoryMetadata } from '@/types';
 
@@ -50,22 +50,53 @@ export function parseYamlFrontMatter(fileContent: string): {
 /**
  * 解析单个故事文件
  * @param filePath 故事文件路径
+ * @param storiesDir 故事目录路径（用于计算相对路径）
  * @returns 故事对象
  */
-export function parseStoryFile(filePath: string): Story {
+export function parseStoryFile(filePath: string, storiesDir: string): Story {
   const fileContent = readFileSync(filePath, 'utf-8');
-  const filename = basename(filePath);
+  const relativePath = relative(storiesDir, filePath);
   const { metadata, content } = parseYamlFrontMatter(fileContent);
 
   return {
     ...metadata,
-    filename,
+    filename: relativePath,
     content,
   };
 }
 
 /**
- * 加载所有故事
+ * 递归加载目录中的所有故事文件
+ * @param dir 目录路径
+ * @param storiesDir 故事根目录路径
+ * @returns 故事数组
+ */
+function loadStoriesFromDir(dir: string, storiesDir: string): Story[] {
+  const stories: Story[] = [];
+  const entries = readdirSync(dir);
+
+  for (const entry of entries) {
+    const fullPath = join(dir, entry);
+    const stat = statSync(fullPath);
+
+    if (stat.isDirectory()) {
+      // 递归读取子目录
+      stories.push(...loadStoriesFromDir(fullPath, storiesDir));
+    } else if (entry.endsWith('.md')) {
+      try {
+        const story = parseStoryFile(fullPath, storiesDir);
+        stories.push(story);
+      } catch (error) {
+        console.warn(`解析故事文件失败: ${entry}`, error);
+      }
+    }
+  }
+
+  return stories;
+}
+
+/**
+ * 加载所有故事（支持递归读取子目录）
  * @param storiesDir 故事目录路径
  * @returns 故事数组
  */
@@ -75,21 +106,7 @@ export function loadAllStories(storiesDir: string): Story[] {
     return [];
   }
 
-  const files = readdirSync(storiesDir);
-  const stories: Story[] = [];
-
-  for (const file of files) {
-    if (file.endsWith('.md')) {
-      try {
-        const story = parseStoryFile(join(storiesDir, file));
-        stories.push(story);
-      } catch (error) {
-        console.warn(`解析故事文件失败: ${file}`, error);
-      }
-    }
-  }
-
-  return stories;
+  return loadStoriesFromDir(storiesDir, storiesDir);
 }
 
 /**
