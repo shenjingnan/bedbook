@@ -1,5 +1,6 @@
 import { Param, Tool } from 'bestmcp';
 import { z } from 'zod';
+import { readCountManager } from '@/readCount';
 import type { SearchResult, Story } from '@/types';
 import { calculateSimilarity, getStoriesDir, loadAllStories } from '@/utils';
 
@@ -38,6 +39,7 @@ export class StoryService {
       author: story.author,
       category: story.category,
       language: story.language,
+      readCount: readCountManager.getReadCount(story.filename),
     }));
 
     return {
@@ -122,13 +124,21 @@ export class StoryService {
         }
       }
 
-      return { story, score };
+      const readCount = readCountManager.getReadCount(story.filename);
+
+      return { story, score, readCount };
     });
 
-    // 过滤出有匹配的故事并按分数排序
+    // 过滤出有匹配的故事并排序
+    // 先按分数降序，分数相同时按阅读次数升序（阅读少的优先展示）
     const matched = scoredStories
       .filter((item) => item.score > 0)
-      .sort((a, b) => b.score - a.score);
+      .sort((a, b) => {
+        if (b.score !== a.score) {
+          return b.score - a.score;
+        }
+        return a.readCount - b.readCount;
+      });
 
     if (matched.length === 0) {
       return {
@@ -138,7 +148,11 @@ export class StoryService {
     }
 
     // 最佳匹配（含完整内容）
-    const [{ story: bestMatch }] = matched;
+    const [{ story: bestMatch, readCount: bestMatchReadCount }] = matched;
+
+    // 增加最佳匹配的阅读次数
+    readCountManager.incrementReadCount(bestMatch.filename);
+    readCountManager.saveReadCounts();
 
     // 其他匹配项（不含内容）
     const otherMatches = matched.slice(1).map((item) => ({
@@ -149,10 +163,14 @@ export class StoryService {
       author: item.story.author,
       category: item.story.category,
       language: item.story.language,
+      readCount: item.readCount,
     }));
 
     return {
-      bestMatch,
+      bestMatch: {
+        ...bestMatch,
+        readCount: bestMatchReadCount,
+      },
       otherMatches,
     };
   }

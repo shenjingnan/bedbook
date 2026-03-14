@@ -44,8 +44,14 @@ export interface StorySearchParams {
  * 搜索结果接口
  */
 export interface SearchResult {
-  /** 最佳匹配故事（含完整内容） */
-  bestMatch: Story | null;
-  /** 其他匹配项列表（不含内容） */
-  otherMatches: Array<Omit<Story, 'content'>>;
+  /** 最佳匹配故事（含完整内容和阅读次数） */
+  bestMatch: (Story & { readCount: number }) | null;
+  /** 其他匹配项列表（不含内容，含阅读次数） */
+  otherMatches: Array<Omit<Story, 'content'> & { readCount: number }>;
 }
+
+/**
+ * 阅读次数记录
+ * key 为文件相对路径，value 为阅读次数
+ */
+export type ReadCountRecord = Record<string, number>;
