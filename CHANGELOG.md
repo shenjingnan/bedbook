@@ -2,6 +2,8 @@
 
 本文档记录项目的所有重要变更。
 
+## [0.2.1](https://github.com/shenjingnan/bedbook/compare/v0.2.0...v0.2.1) (2026-03-14)
+
 # [0.2.0](https://github.com/shenjingnan/bedbook/compare/v0.1.1-beta.0...v0.2.0) (2026-03-13)
 
 
