@@ -15,8 +15,8 @@
     "bedbook": "./dist/index.js"
   },
   "scripts": {
-    "dev": "ts-node --transpile-only src/index.ts",
-    "dev:http": "MCP_TRANSPORT=http MCP_PORT=3000 ts-node --transpile-only src/index.ts",
+    "dev": "tsup --watch --onSuccess 'node dist/index.js'",
+    "dev:http": "MCP_TRANSPORT=http MCP_PORT=3000 tsup --watch --onSuccess 'node dist/index.js'",
     "build": "tsup",
     "start": "node dist/index.js",
     "start:http": "MCP_TRANSPORT=http MCP_PORT=3000 node dist/index.js",
@@ -67,7 +67,6 @@
     "@vitest/coverage-v8": "^4.0.18",
     "cspell": "^9.7.0",
     "release-it": "^19.0.0",
-    "ts-node": "^10.9.2",
     "tsup": "^8.0.0",
     "typescript": "^5.0.0",
     "vitest": "^4.0.18"
