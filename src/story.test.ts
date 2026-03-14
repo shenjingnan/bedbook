@@ -3,6 +3,15 @@ import type { Story } from '@/types';
 import * as utils from '@/utils';
 import { StoryService } from './story';
 
+// Mock readCount 模块
+vi.mock('@/readCount', () => ({
+  readCountManager: {
+    getReadCount: vi.fn().mockReturnValue(0),
+    incrementReadCount: vi.fn(),
+    saveReadCounts: vi.fn(),
+  },
+}));
+
 // Mock utils 模块
 vi.mock('@/utils', () => ({
   getStoriesDir: vi.fn(),
