@@ -104,6 +104,22 @@ export class StoryService {
         if (matchedKeywords.length > 0) {
           score += (matchedKeywords.length / story.keywords.length) * 0.3;
         }
+
+        // category 匹配
+        const categoryLower = story.category.toLowerCase();
+        if (
+          categoryLower.includes(keywordLower) ||
+          keywordLower.includes(categoryLower) ||
+          calculateSimilarity(categoryLower, keywordLower) > 0.6
+        ) {
+          score += 0.25;
+        }
+
+        // content 匹配
+        const contentLower = story.content.toLowerCase();
+        if (contentLower.includes(keywordLower)) {
+          score += 0.2;
+        }
       }
 
       return { story, score };
