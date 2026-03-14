@@ -2,7 +2,7 @@
   "$schema": "https://raw.githubusercontent.com/streetsidesoftware/cspell/main/cspell.schema.json",
   "version": "0.2",
   "language": "en,en-US",
-  "words": ["bedbook", "bestmcp", "tsup", "Zod", "Jaccard", "Deepseek", "shenjingnan"],
+  "words": ["bedbook", "bestmcp", "Deepseek", "gitee", "Jaccard", "shenjingnan", "tsup", "Zod"],
   "ignorePaths": ["dist/**", "node_modules/**", "*.lock", "pnpm-lock.yaml"],
   "patterns": [
     {
