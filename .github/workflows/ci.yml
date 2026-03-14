@@ -1,5 +1,8 @@
 name: CI
 
+permissions:
+  contents: read
+
 # 触发条件：只在PR到main分支时运行CI
 on:
   pull_request:
