@@ -138,6 +138,23 @@ Bedbook 提供了一个 Claude Plugin，让你可以直接在 Claude Code 中使
 - `--age <年龄段>`: 指定目标年龄段（如 `3-5岁`）
 - `--keywords <关键词>`: 指定关键词（逗号分隔）
 
+#### 命令行使用
+
+你也可以通过命令行直接调用 plugin 生成故事：
+
+```bash
+claude -p --permission-mode acceptEdits "/bedbook:add-story 闻鸡起舞"
+```
+
+同样支持可选参数：
+
+```bash
+claude -p --permission-mode acceptEdits "/bedbook:add-story 守株待兔 --age 5-7岁"
+claude -p --permission-mode acceptEdits "/bedbook:add-story 一只勇敢的小猫去森林冒险 --keywords 勇敢,冒险,成长"
+```
+
+这种方式适合在脚本中使用或快速生成故事。
+
 ### 插件功能
 
 该 plugin 提供以下功能：
