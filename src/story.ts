@@ -1,8 +1,8 @@
 import { Param, Tool } from 'bestmcp';
 import { z } from 'zod';
+import { readCountManager } from '@/readCount';
 import type { SearchResult, Story } from '@/types';
 import { calculateSimilarity, getStoriesDir, loadAllStories } from '@/utils';
-import { readCountManager } from '@/readCount';
 
 /**
  * 故事服务类

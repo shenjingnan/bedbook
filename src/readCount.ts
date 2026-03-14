@@ -46,11 +46,7 @@ export class ReadCountManager {
    */
   public saveReadCounts(): void {
     try {
-      writeFileSync(
-        this.dataFilePath,
-        JSON.stringify(this.readCounts, null, 2),
-        'utf-8'
-      );
+      writeFileSync(this.dataFilePath, JSON.stringify(this.readCounts, null, 2), 'utf-8');
     } catch (error) {
       console.error('保存阅读次数数据失败:', error);
     }
