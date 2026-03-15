@@ -59,14 +59,172 @@ language: zh
     expect(result.content).toBe('这是故事正文内容。');
   });
 
-  it('缺失必需字段时抛出错误', () => {
+  it('缺失单个字段时使用默认值 - 缺少 title', () => {
+    const content = `---
+age: 3-7岁
+keywords:
+  - 关键词
+author: 作者
+category: 分类
+language: zh
+---
+
+内容`;
+
+    const result = parseYamlFrontMatter(content, '测试文件.md');
+
+    expect(result.metadata.title).toBe('测试文件');
+    expect(result.metadata.age).toBe('3-7岁');
+  });
+
+  it('缺失单个字段时使用默认值 - 缺少 age', () => {
     const content = `---
 title: 测试故事
+keywords:
+  - 关键词
+author: 作者
+category: 分类
+language: zh
+---
+
+内容`;
+
+    const result = parseYamlFrontMatter(content);
+
+    expect(result.metadata.title).toBe('测试故事');
+    expect(result.metadata.age).toBe('未知');
+  });
+
+  it('缺失单个字段时使用默认值 - 缺少 keywords', () => {
+    const content = `---
+title: 测试故事
+age: 3-7岁
+author: 作者
+category: 分类
+language: zh
+---
+
+内容`;
+
+    const result = parseYamlFrontMatter(content);
+
+    expect(result.metadata.title).toBe('测试故事');
+    expect(result.metadata.keywords).toEqual([]);
+  });
+
+  it('缺失单个字段时使用默认值 - 缺少 author', () => {
+    const content = `---
+title: 测试故事
+age: 3-7岁
+keywords:
+  - 关键词
+category: 分类
+language: zh
+---
+
+内容`;
+
+    const result = parseYamlFrontMatter(content);
+
+    expect(result.metadata.title).toBe('测试故事');
+    expect(result.metadata.author).toBe('未知');
+  });
+
+  it('缺失单个字段时使用默认值 - 缺少 category', () => {
+    const content = `---
+title: 测试故事
+age: 3-7岁
+keywords:
+  - 关键词
+author: 作者
+language: zh
+---
+
+内容`;
+
+    const result = parseYamlFrontMatter(content);
+
+    expect(result.metadata.title).toBe('测试故事');
+    expect(result.metadata.category).toBe('未分类');
+  });
+
+  it('缺失单个字段时使用默认值 - 缺少 language', () => {
+    const content = `---
+title: 测试故事
+age: 3-7岁
+keywords:
+  - 关键词
+author: 作者
+category: 分类
+---
+
+内容`;
+
+    const result = parseYamlFrontMatter(content);
+
+    expect(result.metadata.title).toBe('测试故事');
+    expect(result.metadata.language).toBe('zh');
+  });
+
+  it('缺失多个字段时使用默认值填充', () => {
+    const content = `---
+title: 测试故事
+keywords:
+  - 关键词
+---
+
+内容`;
+
+    const result = parseYamlFrontMatter(content);
+
+    expect(result.metadata.title).toBe('测试故事');
+    expect(result.metadata.age).toBe('未知');
+    expect(result.metadata.keywords).toEqual(['关键词']);
+    expect(result.metadata.author).toBe('未知');
+    expect(result.metadata.category).toBe('未分类');
+    expect(result.metadata.language).toBe('zh');
+  });
+
+  it('完全没有 frontmatter 时全部使用默认值', () => {
+    const content = `这是故事正文内容。`;
+
+    const result = parseYamlFrontMatter(content, '新故事.md');
+
+    expect(result.metadata.title).toBe('新故事');
+    expect(result.metadata.age).toBe('未知');
+    expect(result.metadata.keywords).toEqual([]);
+    expect(result.metadata.author).toBe('未知');
+    expect(result.metadata.category).toBe('未分类');
+    expect(result.metadata.language).toBe('zh');
+    expect(result.content).toBe('这是故事正文内容。');
+  });
+
+  it('空 frontmatter 时全部使用默认值', () => {
+    const content = `---
 ---
 
 这是故事正文内容。`;
 
-    expect(() => parseYamlFrontMatter(content)).toThrow('缺少必需的元数据字段');
+    const result = parseYamlFrontMatter(content, '空故事.md');
+
+    expect(result.metadata.title).toBe('空故事');
+    expect(result.metadata.age).toBe('未知');
+    expect(result.metadata.keywords).toEqual([]);
+    expect(result.metadata.author).toBe('未知');
+    expect(result.metadata.category).toBe('未分类');
+    expect(result.metadata.language).toBe('zh');
+  });
+
+  it('没有提供文件名时使用默认标题', () => {
+    const content = `---
+age: 3-7岁
+---
+
+内容`;
+
+    const result = parseYamlFrontMatter(content);
+
+    expect(result.metadata.title).toBe('未命名故事');
   });
 });
 
@@ -216,11 +374,12 @@ language: zh
 
 内容`;
 
+    // 使用无效的 YAML 语法（未闭合的引号）来触发解析错误
     const invalidStory = `---
-title: 无效故事
+title: "无效故事
 ---
 
-缺少必需字段`;
+无效内容`;
 
     const consoleSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
 
@@ -237,6 +396,26 @@ title: 无效故事
     );
 
     consoleSpy.mockRestore();
+  });
+
+  it('缺失字段的故事文件使用默认值成功加载', () => {
+    const storyWithMissingFields = `---
+title: 缺失字段的故事
+---
+
+内容`;
+
+    writeFileSync(join(testDir, 'missing-fields.md'), storyWithMissingFields, 'utf-8');
+
+    const stories = loadAllStories(testDir);
+
+    expect(stories).toHaveLength(1);
+    expect(stories[0]?.title).toBe('缺失字段的故事');
+    expect(stories[0]?.age).toBe('未知');
+    expect(stories[0]?.author).toBe('未知');
+    expect(stories[0]?.category).toBe('未分类');
+    expect(stories[0]?.language).toBe('zh');
+    expect(stories[0]?.keywords).toEqual([]);
   });
 });
 

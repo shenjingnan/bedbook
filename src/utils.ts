@@ -3,6 +3,16 @@ import { join, relative } from 'node:path';
 import matter from 'gray-matter';
 import type { Story, StoryMetadata } from '@/types';
 
+/** 故事元数据默认值 */
+const DEFAULT_METADATA: Required<StoryMetadata> = {
+  title: '未命名故事',
+  age: '未知',
+  keywords: [],
+  author: '未知',
+  category: '未分类',
+  language: 'zh',
+};
+
 /**
  * 获取故事目录路径
  * 支持通过环境变量 BEDBOOK_STORIES_DIR 自定义路径
@@ -19,30 +29,29 @@ export function getStoriesDir(): string {
 /**
  * 解析 YAML Front Matter
  * 从 Markdown 文件中提取元数据和内容
+ * 缺失的字段将使用默认值填充
  */
-export function parseYamlFrontMatter(fileContent: string): {
-  metadata: StoryMetadata;
+export function parseYamlFrontMatter(
+  fileContent: string,
+  filename?: string
+): {
+  metadata: Required<StoryMetadata>;
   content: string;
 } {
   const { data, content } = matter(fileContent);
 
-  // 验证必需字段
-  const requiredFields: (keyof StoryMetadata)[] = [
-    'title',
-    'age',
-    'keywords',
-    'author',
-    'category',
-    'language',
-  ];
-  for (const field of requiredFields) {
-    if (!data[field]) {
-      throw new Error(`缺少必需的元数据字段: ${field}`);
-    }
-  }
+  // 使用默认值填充缺失字段
+  const metadata: Required<StoryMetadata> = {
+    title: data.title || filename?.replace(/\.md$/, '') || DEFAULT_METADATA.title,
+    age: data.age || DEFAULT_METADATA.age,
+    keywords: Array.isArray(data.keywords) ? data.keywords : DEFAULT_METADATA.keywords,
+    author: data.author || DEFAULT_METADATA.author,
+    category: data.category || DEFAULT_METADATA.category,
+    language: data.language || DEFAULT_METADATA.language,
+  };
 
   return {
-    metadata: data as StoryMetadata,
+    metadata,
     content: content.trim(),
   };
 }
@@ -56,7 +65,7 @@ export function parseYamlFrontMatter(fileContent: string): {
 export function parseStoryFile(filePath: string, storiesDir: string): Story {
   const fileContent = readFileSync(filePath, 'utf-8');
   const relativePath = relative(storiesDir, filePath);
-  const { metadata, content } = parseYamlFrontMatter(fileContent);
+  const { metadata, content } = parseYamlFrontMatter(fileContent, relativePath);
 
   return {
     ...metadata,

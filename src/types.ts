@@ -1,27 +1,29 @@
 /**
  * 故事元数据接口
  * 对应 YAML Front Matter 中的字段
+ * 所有字段均为可选，缺失时使用默认值填充
  */
 export interface StoryMetadata {
   /** 故事标题 */
-  title: string;
+  title?: string;
   /** 适合年龄段 */
-  age: string;
+  age?: string;
   /** 关键词标签 */
-  keywords: string[];
+  keywords?: string[];
   /** 作者 */
-  author: string;
+  author?: string;
   /** 分类 */
-  category: string;
+  category?: string;
   /** 故事语言，如 'zh', 'en' */
-  language: string;
+  language?: string;
 }
 
 /**
  * 完整故事接口
  * 包含元数据和内容
+ * 所有元数据字段在解析后均为必填（缺失字段使用默认值填充）
  */
-export interface Story extends StoryMetadata {
+export interface Story extends Required<StoryMetadata> {
   /** 文件名 */
   filename: string;
   /** 故事正文内容 */
