@@ -2,6 +2,13 @@
 
 本文档记录项目的所有重要变更。
 
+## [0.4.2](https://github.com/shenjingnan/bedbook/compare/v0.4.1...v0.4.2) (2026-03-15)
+
+
+### Bug Fixes
+
+* **metadata:** 为缺失的故事元数据字段添加默认值 ([#56](https://github.com/shenjingnan/bedbook/issues/56)) ([566b045](https://github.com/shenjingnan/bedbook/commit/566b045fc5064532a7cb9653efe1ffb46c78e002))
+
 ## [0.4.1](https://github.com/shenjingnan/bedbook/compare/v0.4.0...v0.4.1) (2026-03-14)
 
 # [0.3.0](https://github.com/shenjingnan/bedbook/compare/v0.2.1...v0.3.0) (2026-03-14)
