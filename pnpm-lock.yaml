@@ -12,8 +12,8 @@ importers:
         specifier: ^2.4.6
         version: 2.4.6
       bestmcp:
-        specifier: ^0.1.5
-        version: 0.1.5
+        specifier: ^0.2.2
+        version: 0.2.2
       gray-matter:
         specifier: ^4.0.3
         version: 4.0.3
@@ -75,11 +75,11 @@ packages:
     resolution: {integrity: sha512-6zABk/ECA/QYSCQ1NGiVwwbQerUCZ+TQbp64Q3AgmfNvurHH0j8TtXa1qbShXA6qqkpAj4V5W8pP6mLe1mcMqA==}
     engines: {node: '>=18'}
 
-  '@bestmcp/client@0.1.5':
-    resolution: {integrity: sha512-7CdJSc4lzOJGALbQBfLN1yw+qCRtQjyH1u5C6nPWx6MGU0FMAGS4aO9PoBReTSz+uCx+q+5uIKjHDmnhkCOfjw==}
+  '@bestmcp/client@0.2.2':
+    resolution: {integrity: sha512-VcDo6RQ1ciHgjeQPjxBxNQuu4k2W+vvDFYlKjjYRjV3Xo568WtspCanBEvIeEBTomiohG9vdNF4dr7tPQKiZ3w==}
 
-  '@bestmcp/server@0.1.5':
-    resolution: {integrity: sha512-0BImLh8+X3Kpmy9oyXqXxTARdRp61vOrvJneftkAO1fWL5gYcmrSMQk6/7R+aBk7Z1umtN+W7sSh+eZBbF347w==}
+  '@bestmcp/server@0.2.2':
+    resolution: {integrity: sha512-3sPuCXo05gmMKauWSVcHCzhKEmykh43h7JRdzmb6k0TVokmTBF8jxhZM5wuS7+SDsXfZw5O0KB3a4XsBxcz03g==}
     peerDependencies:
       zod: ^3.25.0 || ^4.0.0
 
@@ -1060,8 +1060,8 @@ packages:
   before-after-hook@4.0.0:
     resolution: {integrity: sha512-q6tR3RPqIB1pMiTRMFcZwuG5T8vwp+vUvEG0vuI6B+Rikh5BfPp2fQ82c925FOs+b0lcFQ8CFrL+KbilfZFhOQ==}
 
-  bestmcp@0.1.5:
-    resolution: {integrity: sha512-sgpE3ZZv4b7pDMJ80emRg6GVs+3Yr7DhdpXAajpPXfZ/ehy9w6NrHoi67rr7pyWazAsqRlZLg7D0YdIUEXcKvg==}
+  bestmcp@0.2.2:
+    resolution: {integrity: sha512-xP9Bf7sF0aUbed2b7jH+WaBPBXYzZOdig3YxKcjN+PxAtu1CAnoGQ08ete//EWm10DfK1VvJSLaCAInD0bv8eQ==}
 
   body-parser@2.2.2:
     resolution: {integrity: sha512-oP5VkATKlNwcgvxi0vM0p/D3n2C3EReYVX+DNYs5TjZFn/oQt2j+4sVJtSMr18pdRr8wjTcBl6LoV+FUwzPmNA==}
@@ -2574,7 +2574,7 @@ snapshots:
 
   '@bcoe/v8-coverage@1.0.2': {}
 
-  '@bestmcp/client@0.1.5(zod@4.3.6)':
+  '@bestmcp/client@0.2.2(zod@4.3.6)':
     dependencies:
       '@modelcontextprotocol/sdk': 1.27.1(zod@4.3.6)
     transitivePeerDependencies:
@@ -2582,7 +2582,7 @@ snapshots:
       - supports-color
       - zod
 
-  '@bestmcp/server@0.1.5(zod@4.3.6)':
+  '@bestmcp/server@0.2.2(zod@4.3.6)':
     dependencies:
       '@modelcontextprotocol/sdk': 1.27.1(zod@4.3.6)
       reflect-metadata: 0.2.2
@@ -3406,10 +3406,10 @@ snapshots:
 
   before-after-hook@4.0.0: {}
 
-  bestmcp@0.1.5:
+  bestmcp@0.2.2:
     dependencies:
-      '@bestmcp/client': 0.1.5(zod@4.3.6)
-      '@bestmcp/server': 0.1.5(zod@4.3.6)
+      '@bestmcp/client': 0.2.2(zod@4.3.6)
+      '@bestmcp/server': 0.2.2(zod@4.3.6)
       '@modelcontextprotocol/sdk': 1.27.1(zod@4.3.6)
       reflect-metadata: 0.2.2
       zod: 4.3.6
