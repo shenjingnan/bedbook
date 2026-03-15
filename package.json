@@ -58,7 +58,7 @@
   "packageManager": "pnpm@10.30.3",
   "dependencies": {
     "@biomejs/biome": "^2.4.6",
-    "bestmcp": "^0.1.5",
+    "bestmcp": "^0.2.2",
     "gray-matter": "^4.0.3",
     "zod": "^4.3.6"
   },
