@@ -1,0 +1,111 @@
+name: 每日随机故事生成
+
+on:
+  schedule:
+    - cron: '0 0 * * *'  # 每天 UTC 0:00 (北京时间 8:00)
+  workflow_dispatch:      # 手动触发（测试用）
+
+jobs:
+  daily-story:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+      - name: 检出代码
+        uses: actions/checkout@v4
+
+      - name: 启用 Corepack
+        run: corepack enable
+
+      - name: 安装 pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10.13.1
+
+      - name: 设置 Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 'lts/iron'
+          cache: 'pnpm'
+
+      - name: 安装依赖
+        run: pnpm install
+
+      - name: 生成随机分类
+        id: category
+        run: |
+          RESULT=$(npx tsx scripts/generate-story-category.ts)
+          CATEGORY=$(echo "$RESULT" | jq -r .category)
+          DATE=$(date +%Y%m%d)
+          echo "category=$CATEGORY" >> $GITHUB_OUTPUT
+          echo "branch=story/$DATE-$CATEGORY" >> $GITHUB_OUTPUT
+          echo "date=$DATE" >> $GITHUB_OUTPUT
+
+      - name: 创建分支
+        env:
+          BRANCH_NAME: ${{ steps.category.outputs.branch }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git checkout -b "$BRANCH_NAME"
+
+      - name: 运行 Claude Code
+        uses: anthropics/claude-code-action@v1
+        env:
+          ANTHROPIC_BASE_URL: ${{ secrets.ANTHROPIC_BASE_URL || vars.ANTHROPIC_BASE_URL }}
+        with:
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          prompt: |
+            /add-story 请自由发挥创意，生成一个有趣的儿童故事，保存到 stories/${{ steps.category.outputs.category }}/ 目录下。
+          claude_args: "--dangerously-skip-permissions --mcp-config /tmp/mcp-config.json"
+
+      - name: 检查是否有更改
+        id: check_changes
+        run: |
+          git add stories/
+          if git diff --staged --quiet; then
+            echo "has_changes=false" >> $GITHUB_OUTPUT
+          else
+            echo "has_changes=true" >> $GITHUB_OUTPUT
+          fi
+
+      - name: 提交更改
+        if: steps.check_changes.outputs.has_changes == 'true'
+        env:
+          STORY_DATE: ${{ steps.category.outputs.date }}
+        run: |
+          git commit -m "feat(story): 添加每日随机故事 ($STORY_DATE)"
+
+      - name: 推送分支
+        if: steps.check_changes.outputs.has_changes == 'true'
+        env:
+          BRANCH_NAME: ${{ steps.category.outputs.branch }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git push origin "$BRANCH_NAME"
+
+      - name: 创建 PR
+        if: steps.check_changes.outputs.has_changes == 'true'
+        env:
+          BRANCH_NAME: ${{ steps.category.outputs.branch }}
+          STORY_DATE: ${{ steps.category.outputs.date }}
+          STORY_CATEGORY: ${{ steps.category.outputs.category }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh pr create \
+            --base main \
+            --title "feat(story): 添加每日随机故事 ($STORY_DATE)" \
+            --body "## 概述
+
+          🤖 自动生成的每日故事
+
+          ## 详情
+
+          - **日期**: $STORY_DATE
+          - **分类**: $STORY_CATEGORY
+
+          ---
+
+          此 PR 由 GitHub Actions 自动创建。"
