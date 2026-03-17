@@ -2,8 +2,8 @@ name: 每日随机故事生成
 
 on:
   schedule:
-    - cron: '0 0 * * *'  # 每天 UTC 0:00 (北京时间 8:00)
-  workflow_dispatch:      # 手动触发（测试用）
+    - cron: "0 0 * * *" # 每天 UTC 0:00 (北京时间 8:00)
+  workflow_dispatch: # 手动触发（测试用）
 
 jobs:
   daily-story:
@@ -28,8 +28,8 @@ jobs:
       - name: 设置 Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '24'
-          cache: 'pnpm'
+          node-version: "24"
+          cache: "pnpm"
 
       - name: 安装依赖
         run: pnpm install
@@ -59,6 +59,7 @@ jobs:
           ANTHROPIC_DEFAULT_SONNET_MODEL: ${{ vars.ANTHROPIC_DEFAULT_SONNET_MODEL || vars.CLAUDE_DEFAULT_MODEL }}
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         with:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
           anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
           show_full_output: ${{ vars.CLAUDE_FULL_OUTPUT || 'false' }}
           claude_args: "--dangerously-skip-permissions --mcp-config /tmp/mcp-config.json"
