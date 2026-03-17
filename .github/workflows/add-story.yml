@@ -39,7 +39,7 @@ jobs:
         run: |
           RESULT=$(npx tsx scripts/generate-story-category.ts)
           CATEGORY=$(echo "$RESULT" | jq -r .category)
-          DATE=$(date +%Y%m%d)
+          DATE=$(date +%Y%m%d-%H%M%S)
           echo "category=$CATEGORY" >> $GITHUB_OUTPUT
           echo "branch=story/$DATE-$CATEGORY" >> $GITHUB_OUTPUT
           echo "date=$DATE" >> $GITHUB_OUTPUT
