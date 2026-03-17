@@ -22,7 +22,7 @@ jobs:
       - name: 安装 pnpm
         uses: pnpm/action-setup@v4
         with:
-          version: 10.13.1
+          version: 10.30.3
 
       - name: 设置 Node.js
         uses: actions/setup-node@v4
@@ -47,18 +47,19 @@ jobs:
         env:
           BRANCH_NAME: ${{ steps.category.outputs.branch }}
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
           git checkout -b "$BRANCH_NAME"
 
       - name: 运行 Claude Code
         uses: anthropics/claude-code-action@v1
         env:
           ANTHROPIC_BASE_URL: ${{ secrets.ANTHROPIC_BASE_URL || vars.ANTHROPIC_BASE_URL }}
+          ANTHROPIC_DEFAULT_OPUS_MODEL: ${{ vars.ANTHROPIC_DEFAULT_OPUS_MODEL || vars.CLAUDE_DEFAULT_MODEL }}
+          ANTHROPIC_DEFAULT_HAIKU_MODEL: ${{ vars.ANTHROPIC_DEFAULT_HAIKU_MODEL || vars.CLAUDE_DEFAULT_MODEL }}
+          ANTHROPIC_DEFAULT_SONNET_MODEL: ${{ vars.ANTHROPIC_DEFAULT_SONNET_MODEL || vars.CLAUDE_DEFAULT_MODEL }}
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         with:
           anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
-          prompt: |
-            /add-story 请自由发挥创意，生成一个有趣的儿童故事，保存到 stories/${{ steps.category.outputs.category }}/ 目录下。
+          show_full_output: ${{ vars.CLAUDE_FULL_OUTPUT || 'false' }}
           claude_args: "--dangerously-skip-permissions --mcp-config /tmp/mcp-config.json"
 
       - name: 检查是否有更改
