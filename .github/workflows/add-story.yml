@@ -59,7 +59,7 @@ jobs:
           ANTHROPIC_DEFAULT_SONNET_MODEL: ${{ vars.ANTHROPIC_DEFAULT_SONNET_MODEL || vars.CLAUDE_DEFAULT_MODEL }}
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          prompt: "/add-story"
+          prompt: "/add-story 生成一个 ${{ steps.category.outputs.category }} 分类的儿童故事。"
           anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
           show_full_output: ${{ vars.CLAUDE_FULL_OUTPUT || 'false' }}
           claude_args: "--dangerously-skip-permissions"
