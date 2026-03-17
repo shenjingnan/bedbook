@@ -58,7 +58,7 @@ jobs:
           ANTHROPIC_DEFAULT_HAIKU_MODEL: ${{ vars.ANTHROPIC_DEFAULT_HAIKU_MODEL || vars.CLAUDE_DEFAULT_MODEL }}
           ANTHROPIC_DEFAULT_SONNET_MODEL: ${{ vars.ANTHROPIC_DEFAULT_SONNET_MODEL || vars.CLAUDE_DEFAULT_MODEL }}
         with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
           prompt: "/add-story 生成一个 ${{ steps.category.outputs.category }} 分类的儿童故事。"
           anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
           show_full_output: ${{ vars.CLAUDE_FULL_OUTPUT || 'false' }}
@@ -85,9 +85,9 @@ jobs:
         if: steps.check_changes.outputs.has_changes == 'true'
         env:
           BRANCH_NAME: ${{ steps.category.outputs.branch }}
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
-          git push origin "$BRANCH_NAME"
+          git push -u origin "$BRANCH_NAME"
 
       - name: 创建 PR
         if: steps.check_changes.outputs.has_changes == 'true'
@@ -95,7 +95,7 @@ jobs:
           BRANCH_NAME: ${{ steps.category.outputs.branch }}
           STORY_DATE: ${{ steps.category.outputs.date }}
           STORY_CATEGORY: ${{ steps.category.outputs.category }}
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
           gh pr create \
             --base main \
