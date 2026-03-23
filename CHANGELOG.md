@@ -2,6 +2,27 @@
 
 本文档记录项目的所有重要变更。
 
+# [0.5.0](https://github.com/shenjingnan/bedbook/compare/v0.4.2...v0.5.0) (2026-03-23)
+
+
+### Bug Fixes
+
+* **ci:** 优化分支名称唯一性，添加时分秒时间戳 ([#68](https://github.com/shenjingnan/bedbook/issues/68)) ([550227f](https://github.com/shenjingnan/bedbook/commit/550227fd0524cd0fcad01cf3a27070eee970a062))
+* **ci:** 修复 add-story 工作流配置 ([#66](https://github.com/shenjingnan/bedbook/issues/66)) ([9f42c8d](https://github.com/shenjingnan/bedbook/commit/9f42c8dd4d60daaf0d72004edaa6c6118dbb1610))
+
+
+### Features
+
+* **ci:** 优化 add-story 工作流提示词 ([#67](https://github.com/shenjingnan/bedbook/issues/67)) ([9e84c05](https://github.com/shenjingnan/bedbook/commit/9e84c05086d5682a13505091e4dc701f3ec9ce88))
+* **story:** 添加每日随机故事 (20260317-110303) ([#69](https://github.com/shenjingnan/bedbook/issues/69)) ([87872e1](https://github.com/shenjingnan/bedbook/commit/87872e1616add02aa4531e1bb07c25c06c94d465))
+* **story:** 添加每日随机故事 (20260318-004854) ([#70](https://github.com/shenjingnan/bedbook/issues/70)) ([ddc6bc4](https://github.com/shenjingnan/bedbook/commit/ddc6bc42f0f2f8b514e44cf209560c6cc239d686))
+* **story:** 添加每日随机故事 (20260319-004923) ([#72](https://github.com/shenjingnan/bedbook/issues/72)) ([df05e76](https://github.com/shenjingnan/bedbook/commit/df05e767a6d13c08a4ce9659c2578803d846af95))
+* **story:** 添加每日随机故事 (20260320-004702) ([#73](https://github.com/shenjingnan/bedbook/issues/73)) ([cc214aa](https://github.com/shenjingnan/bedbook/commit/cc214aae6503eb935e12a67bfc52810bbf5f3a36))
+* **story:** 添加每日随机故事 (20260321-004434) ([#74](https://github.com/shenjingnan/bedbook/issues/74)) ([a6957b1](https://github.com/shenjingnan/bedbook/commit/a6957b1b33b70b429ba8c31088b9dffd8816574e))
+* **story:** 添加每日随机故事 (20260322-005053) ([#76](https://github.com/shenjingnan/bedbook/issues/76)) ([7355b03](https://github.com/shenjingnan/bedbook/commit/7355b03b350c852f453eb79209ba6ceaad657fde))
+* **story:** 添加每日随机故事 (20260323-005113) ([#77](https://github.com/shenjingnan/bedbook/issues/77)) ([a99d425](https://github.com/shenjingnan/bedbook/commit/a99d425520744db6efb95342a1316d290771623b))
+* 添加故事生成 GitHub Actions 工作流 ([#61](https://github.com/shenjingnan/bedbook/issues/61)) ([e9eafce](https://github.com/shenjingnan/bedbook/commit/e9eafcefe3e66e3d9da7b2877fa0e7d02c3b36bc))
+
 ## [0.4.2](https://github.com/shenjingnan/bedbook/compare/v0.4.1...v0.4.2) (2026-03-15)
 
 
